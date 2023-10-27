@@ -13,9 +13,8 @@ async function addToWishlist(req, res) {
     }
     // console.log({book, userId})
     const user = await Wishlist.findOne({userId});
-    console.log({user})
 
-    if (user.length !== 0) {
+    if (!user) {
       const isWishlisted = user._doc.books.some(wishlistedBook => wishlistedBook.title === book.title)
       if (isWishlisted) {
         return res.status(422).json({
