@@ -4,7 +4,7 @@ const Wishlist = require('../models/wishlist.model'); // Define the Wishlist mod
 async function addToWishlist(req, res) {
   // Implement the logic to add a book to the wishlist
   try {
-    const {params: {userId}, body: {book}} = req
+    const { body: { book, userId } } = req
     if (!userId) {
         return res.status(422).json({status: 422, message: 'User Required to be passed'})
     }
@@ -33,7 +33,7 @@ async function addToWishlist(req, res) {
     }
 
     if (user.length === 0) {
-      const {_doc: newWishlist} = await Wishlist.create({
+      const { _doc: newWishlist } = await Wishlist.create({
         userId,
         books: [book]
       })
@@ -57,7 +57,7 @@ async function addToWishlist(req, res) {
 async function getUserWishlist(req, res) {
   // Implement the logic to retrieve a user's wishlist
   try {
-    const {params: {userId}} = req
+    const {query: {userId}} = req
     const response = await Wishlist.find({ userId })
 
     return res.status(200).json({

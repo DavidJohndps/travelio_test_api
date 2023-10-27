@@ -4,8 +4,8 @@ const axios = require('axios');
 // Controller for searching books
 async function searchBooks(req, res) {
   try {
-    const {params: {query}} = req;
-    const {data: {items}} = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
+    const { query: { query } } = req;
+    const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
     if(!items) return res.status(200).json({status: 200, data: [], total: 0})
     const books = items?.map((item) => {
       const {volumeInfo} = item
@@ -27,8 +27,8 @@ async function searchBooks(req, res) {
 }
 async function searchBookByCategory(req, res) {
   try {
-    const {params: {category, query}} = req;
-    const {data: {items}} = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}+subject:${category}`);
+    const { query: { category, query } } = req;
+    const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}+subject:${category}`);
     if(!items) return res.status(200).json({status: 200, data: [], total: 0})
     const books = items?.map((item) => {
       const {volumeInfo} = item

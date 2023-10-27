@@ -3,9 +3,9 @@ const router = Router();
 const wishlistController = require('../../controller/wishlist');
 
 // Route for adding a book to the wishlist
-router.post('/addWishlist/:userId', wishlistController.addToWishlist);
+router.post('/addWishlist', wishlistController.addToWishlist);
 
 // Route for retrieving a user's wishlist
-router.get('/getWishlists/:userId', wishlistController.getUserWishlist);
+router.get('/getWishlists', wishlistController.getUserWishlist);
 
 module.exports = router;
