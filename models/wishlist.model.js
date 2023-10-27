@@ -7,10 +7,14 @@ const wishlistSchema = new Schema({
         required: true
     },
     books: [new Schema({
+    category: String,
     title: String,
+    description: String,
+    language: String,
     author: String,
     thumbnail: String,
     ratings: Number,
+
 })]
 });
 
