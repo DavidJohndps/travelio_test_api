@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+    container_name: books-api
+    environment:
+      - PORT=3030
+      - MONGODB_URI=mongodb+srv://admin1234:admin1234@main-test.3o272.mongodb.net/?retryWrites=true&w=majority
+    ports:
+      - "3030:3030"
